@@ -17,7 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
   
   <RouterView />
   <footer>
-      <p>Derechos de autor &copy; 2023 Reserva de Hotel</p>
+      <p>Derechos de autor &copy; 2023 Reservados al Hotel</p>
     </footer>
   </div>
   
