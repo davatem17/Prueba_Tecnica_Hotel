@@ -61,6 +61,7 @@ img {
     margin: auto;
     width: fit-content;
     margin-top: 10px;
+    margin-bottom: 10px;
     flex-basis: 30%;
     border: 1px solid #ccc;
     border-radius: 4px;

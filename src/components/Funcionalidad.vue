@@ -45,7 +45,6 @@ const reservationDays = (day, customer) => {
     let position = []
     let minimoPay = []
     
-    let probar2=[]
 
     if (day.length == 1) {
         if (weekendDay2(day[0])) {
@@ -71,53 +70,30 @@ const reservationDays = (day, customer) => {
             probar.value.push({name: hotels[i].name, pago: numberWeekDay * hotels[i].weekRewards + numberWeekendDay * hotels[i].weekendRewards})
         }
     }
-    console.log(numberWeekDay)
-    console.log(numberWeekendDay)
-    console.log(pay)
-    // for(let i=0; i<=2;i++){
-    //     minimoPay.push(Math.min(...pay))
-    //     position.push(pay.indexOf(minimoPay[i]))
-    //     pay.splice(minimoPay[i],position[i])
-    // }
-    // console.log('minimo')
-    // console.log(minimoPay)
-    // console.log('position')
-    // console.log(position)
     minimoPay = pay.sort((a, b) => a - b)
     probar.value.sort((x,y)=>x.pago - y.pago)
-    console.log(minimoPay)
-    console.log(probar.value)
-  
-
-    //console.log(position)
 }
 
 
 
-const obtenerDiasEntreFechas = (fechaInicio, fechaFin) => {
-    const unDia = 24 * 60 * 60 * 1000; // Cantidad de milisegundos en un día
-    const dias = []; // Array para almacenar los días
-
-    // Convertir las fechas a formato sin horas para asegurar que solo se compara la fecha
-    const fechaInicioSinHora = new Date(fechaInicio.getFullYear(), fechaInicio.getMonth(), fechaInicio.getDate());
-    const fechaFinSinHora = new Date(fechaFin.getFullYear(), fechaFin.getMonth(), fechaFin.getDate());
-
-    // Calcular los días entre las fechas
+const obtenerDiasEntreFechas = (dateI, dateF) => {
+    const dias = []; 
+    const fechaInicioSinHora = new Date(dateI.getFullYear(), dateI.getMonth(), dateI.getDate());
+    const fechaFinSinHora = new Date(dateF.getFullYear(), dateF.getMonth(), dateF.getDate());
     for (let fecha = fechaInicioSinHora; fecha <= fechaFinSinHora; fecha.setDate(fecha.getDate() + 1)) {
-        dias.push(new Date(fecha)); // Agregar la fecha al array
+        dias.push(new Date(fecha)); 
     }
-
     return dias;
 }
 
 const weekendDay = (fecha) => {
-    const dia = fecha.getDay(); // Obtiene el día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
-    return dia === 0 || dia === 6; // Retorna true si es Domingo (0) o Sábado (6), caso contrario retorna false.
+    const dia = fecha.getDay(); 
+    return dia === 0 || dia === 6; 
 }
 
 const weekendDay2 = (fecha) => {
-    const dia = fecha.getDay(); // Obtiene el día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
-    return dia === 5 || dia === 6; // Retorna true si es Domingo (0) o Sábado (6), caso contrario retorna false.
+    const dia = fecha.getDay(); 
+    return dia === 5 || dia === 6; 
 }
 
 const invert = (date) => {
@@ -125,8 +101,6 @@ const invert = (date) => {
     const invertedDate = `${partes[2]}-${partes[1]}-${partes[0]}`;
     return invertedDate
 }
-
-
 
 const countDays = (star, end) => {
     const millisecondsDay = 24 * 60 * 60 * 1000
@@ -139,6 +113,7 @@ const countDays = (star, end) => {
         <DatePicker v-model="range" is-range>
             <template v-slot="{ inputValue, inputEvents }">
                 <input type="text" v-model="inputValue.start" v-on="inputEvents.start" /><br/>
+                <input type="text" v-model="inputValue.end" v-on="inputEvents.end" /><br/>
                 <select v-model="customerType">
                     <option value="regular">Regular</option>
                     <option value="recompensa">Recompensa al Cliente</option>
